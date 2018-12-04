@@ -1,6 +1,8 @@
 {
   "name": "stock-management-information-system-v3",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "14f76d91"
 }
