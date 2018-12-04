@@ -10,6 +10,7 @@ import { NavController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   infoLogin = { "username": "", "password": "" };
   responseData: any;
+  statusLogin:any;
   constructor(private smisservice: SmisService, private navCtrl: NavController) {
     
   }
@@ -21,10 +22,19 @@ export class LoginPage implements OnInit {
     console.log(this.infoLogin);
     this.smisservice.postData('login.php', this.infoLogin).subscribe(data => {
       this.responseData = data;
+      this.statusLogin = this.responseData.message;
+      console.log(this.statusLogin);
       console.log(this.responseData);
-      this.responseData = JSON.stringify(this.responseData);
-      localStorage.setItem("loginInfo",this.responseData);
-      this.navCtrl.navigateForward('/home');
+      if (this.statusLogin == "Login Success")
+      {
+        this.responseData = JSON.stringify(this.responseData);
+        localStorage.setItem("loginInfo", this.responseData);
+        this.navCtrl.navigateForward('/home');
+      }
+      else{
+        alert("wrong username or wrong password");
+      }
+      
 
 
     });

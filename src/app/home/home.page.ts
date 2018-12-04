@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SmisService } from '../services/smis.service';
 import { NavController } from '@ionic/angular';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +13,22 @@ export class HomePage {
   constructor(private smisservice: SmisService, private navCtrl: NavController){}
 
   ngOnInit() {
-      this.loginInfo = JSON.parse(localStorage.getItem('loginInfo'));    
+      if(localStorage.getItem('loginInfo'))
+      {
+        this.loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
+      }
+      else{
+        this.loginInfo = { "username": "", "role": "" };
+        this.navCtrl.navigateBack('/login');
+      }
+      
+      console.log(this.loginInfo); 
   }
   logout(){
     localStorage.removeItem('loginInfo');
+    this.navCtrl.navigateForward('/login');
+  }
+  gotologin(){
     this.navCtrl.navigateForward('/login');
   }
 }
