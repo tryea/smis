@@ -31,9 +31,6 @@ export class RegisterPage implements OnInit {
         localStorage.setItem("loginInfo", this.responseData);
         this.navCtrl.navigateForward('/home');
       }
-      else {
-        alert("Username already Exist");
-      }
     }, (err: HttpErrorResponse) => {
       console.log(err.error);
       this.responseData = err.error;

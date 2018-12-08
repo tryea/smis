@@ -28,9 +28,6 @@ export class HomePage {
     localStorage.removeItem('loginInfo');
     this.navCtrl.navigateForward('/login');
   }
-  gotologin(){
-    this.navCtrl.navigateForward('/login');
-  }
 }
 
 

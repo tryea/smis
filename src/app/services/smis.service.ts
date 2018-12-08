@@ -3,7 +3,8 @@ import { environment } from 'src/environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { Header } from '@angular/http';
 
-const apiUrl = 'http://ersaptaaristo.xyz/product';
+//const apiUrl = 'http://ersaptaaristo.xyz/product';
+const apiUrl = 'http://localhost/api/product';
 @Injectable({
   providedIn: 'root'
 })

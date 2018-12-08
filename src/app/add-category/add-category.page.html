@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Category</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-input required type="text" placeholder="Category Name" [(ngModel)]="infoCategory.categoryName"></ion-input>
+  </ion-item>
+
+  <ion-button shape="round" size="full" color="primary" (click)="addCategory()">Add Category</ion-button>
+
+</ion-content>

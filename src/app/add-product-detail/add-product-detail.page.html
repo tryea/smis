@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Product Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-input required type="text" placeholder="Product Detail Name" [(ngModel)]="infoProductDetail.productDetailName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Product Name</ion-label>
+    <ion-select [(ngModel)]="infoProductDetail.productId" value="" ok-text="Okay" cancel-text="Dismiss">
+    <ion-select-option *ngFor="let products of productList" value="{{ products.productId }}"> {{ products.productName }} </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-input required type="text" placeholder="Colour" [(ngModel)]="infoProductDetail.colour"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input required type="text" placeholder="Size" [(ngModel)]="infoProductDetail.size"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input required type="text" placeholder="Stock" [(ngModel)]="infoProductDetail.stock"></ion-input>
+  </ion-item>
+
+  <ion-button shape="round" size="full" color="primary" (click)="addProductDetail()">Add Product</ion-button>
+
+</ion-content>
