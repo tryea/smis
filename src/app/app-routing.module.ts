@@ -10,6 +10,9 @@ const routes: Routes = [
   { path: 'addProduct', loadChildren: './add-product/add-product.module#AddProductPageModule' },
   { path: 'addProductDetail', loadChildren: './add-product-detail/add-product-detail.module#AddProductDetailPageModule' },
   { path: 'updateStock', loadChildren: './update-stock/update-stock.module#UpdateStockPageModule' },
+  { path: 'imageupload', loadChildren: './imageupload/imageupload.module#ImageuploadPageModule' },
+  { path: 'qrcode', loadChildren: './qrcode/qrcode.module#QrcodePageModule' },
+  { path: 'uploadimagebeta', loadChildren: './uploadimagebeta/uploadimagebeta.module#UploadimagebetaPageModule' },
 ];
 
 @NgModule({

@@ -9,6 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  ngxQrcode2 = 'https://www.npmjs.com/package/ngx-qrcode2';
+  techiediaries = 'https://www.npmjs.com/~techiediaries';
+  letsboot = 'https://www.letsboot.com/';
+
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

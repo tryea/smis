@@ -28,7 +28,18 @@
   <ion-item>
     <ion-input required type="text" placeholder="Stock" [(ngModel)]="infoProductDetail.stock"></ion-input>
   </ion-item>
+  <ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-title>Product Image</ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-img width="80" height="80" [src]=images.convertedImagePath alt="choose Image" (click)="selectImage()">
+        </ion-img>
+      </ion-item>
+    </ion-list>
+  </ion-item>
 
-  <ion-button shape="round" size="full" color="primary" (click)="addProductDetail()">Add Product</ion-button>
+<ion-button shape="round" size="full" color="primary" (click)="startAddProductDetail()">Add Product</ion-button>
 
 </ion-content>

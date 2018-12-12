@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>uploadimagebeta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-title>Product Image</ion-title>
+    </ion-item>
+    <ion-item>
+      <ion-img width="80" height="80" [src]=images.convertedImagePath alt="choose Image" (click)="selectImage(images)">
+      </ion-img>
+    </ion-item>
+  </ion-list>
+</ion-item>
+
+<ion-button shape="round" size="full" color="primary" (click)="startUpload()">Upload</ion-button>
+
+</ion-content>

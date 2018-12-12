@@ -1,78 +1,33 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SmisService } from '../services/smis.service';
 import { NavController } from '@ionic/angular';
-import { HttpErrorResponse } from '@angular/common/http';
 import { File, FileEntry } from '@ionic-native/File/ngx';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/Camera/ngx';
 import { ActionSheetController, ToastController, Platform, LoadingController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { finalize } from 'rxjs/operators';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
-  selector: 'app-add-product-detail',
-  templateUrl: './add-product-detail.page.html',
-  styleUrls: ['./add-product-detail.page.scss'],
+  selector: 'app-uploadimagebeta',
+  templateUrl: './uploadimagebeta.page.html',
+  styleUrls: ['./uploadimagebeta.page.scss'],
 })
-export class AddProductDetailPage implements OnInit {
+export class UploadimagebetaPage implements OnInit {
 
-  product: any;
-  productList: any;
-  responseData: any;
-  createqr: any;
-  createdCode: any;
-  infoProductDetail = { 'productDetailName': '', 'productId': '', 'colour': '', 'size': '', 'stock': '' };
-  // tslint:disable-next-line:max-line-length
-  images = { 'imagePath': 'http://ersaptaaristo.xyz/img/add.png', 'currentName': '', 'correctPath': '', 'convertedImagePath': 'http://ersaptaaristo.xyz/img/add.png'};
-  qrimages = { 'imagePath': '', 'currentName': '', 'correctPath': '', 'convertedImagePath': '' };
-  // tslint:disable-next-line:max-line-length
+  images = { 'imagePath': "http://ersaptaaristo.xyz/img/add.png", 'currentName': '', 'correctPath': '', 'convertedImagePath': 'http://ersaptaaristo.xyz/img/add.png' };
+  imageURI = '';
+  imageFileName = '';
   constructor(private smisservice: SmisService, private navCtrl: NavController, private camera: Camera, private webview: WebView,
-    private actionSheetController: ActionSheetController, private loadingController: LoadingController,
-    private ref: ChangeDetectorRef, private file: File, private barcodeScanner: BarcodeScanner) { }
+    private actionSheetController: ActionSheetController, private toastCtrl: ToastController, private loadingController: LoadingController,
+    private ref: ChangeDetectorRef, private file: File, private http: HttpClient ) { }
 
   ngOnInit() {
-    this.smisservice.getData('productlist.php').subscribe(data => {
-
-      this.responseData = data;
-      this.product = this.responseData;
-      this.productList = this.product.records;
-      console.log(this.productList);
-
-    }, (err: HttpErrorResponse) => {
-      console.log(err.error);
-      this.responseData = err.error;
-      alert(this.responseData.message);
-    });
-
-  }
-
-  async startAddProductDetail() {
-    await this.addProductDetail();
-    await this.startUpload(this.images, 'product');
-    //await this.startUpload(this.qrimages, 'QR');
-    // this.startUpload(this.qrimages);
-    // alert(this.responseData.message);
-    // this.navCtrl.navigateForward('/home');
-  }
-
-  async addProductDetail() {
-    console.log(this.infoProductDetail);
-    this.smisservice.postData('addproductdetail.php', this.infoProductDetail).subscribe(data => {
-
-      this.responseData = data;
-      console.log(this.responseData);
-      return this.responseData;
-    }, (err: HttpErrorResponse) => {
-      console.log(err.error);
-      this.responseData = err.error;
-      console.log(this.responseData);
-      alert(this.responseData.message);
-    });
   }
 
   async selectImage() {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Select Image source',
+      header: "Select Image source",
       buttons: [{
         text: 'Load from Library',
         handler: () => {
@@ -118,31 +73,30 @@ export class AddProductDetailPage implements OnInit {
       this.images.convertedImagePath = convertedImagePath;
 
       console.log(this.images);
-      
+
       localStorage.setItem("images", JSON.stringify(this.images));
       this.ref.detectChanges();
     });
   }
 
-  async startUpload(img,imgtype) {
-    this.file.resolveLocalFilesystemUrl(img.imagePath)
+  startUpload(img) {
+    this.file.resolveLocalFilesystemUrl(this.images.imagePath)
       .then(entry => {
-        var name = imgtype + "_" + this.responseData.productId + "_" + this.responseData.productDetailId + "_" + this.responseData.productDetailName ;
-        (<FileEntry>entry).file(file => this.readFile(file,name))
+        (<FileEntry>entry).file(file => this.readFile(file))
       })
       .catch(err => {
         console.log('Error while reading file.');
       });
   }
 
-  readFile(file: any, name) {
+  readFile(file: any) {
     const reader = new FileReader();
     reader.onloadend = () => {
       const formData = new FormData();
       const imgBlob = new Blob([reader.result], {
         type: file.type
       });
-      formData.append('file', imgBlob, name);
+      formData.append('file', imgBlob, file.name);
       this.uploadImageData(formData);
     };
     reader.readAsArrayBuffer(file);
