@@ -8,7 +8,8 @@ import { ActionSheetController, ToastController, Platform, LoadingController } f
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { finalize } from 'rxjs/operators';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { isNullOrUndefined } from 'util';
+
+declare var cordova: any;
 
 @Component({
   selector: 'app-add-product-detail',
@@ -48,9 +49,6 @@ export class AddProductDetailPage implements OnInit {
 
   async startAddProductDetail() {
     await this.addProductDetail();
-    //await this.startUpload(this.images, 'product');
-    //await this.startUpload(this.qrimages, 'QR');
-    // this.startUpload(this.qrimages);
     // alert(this.responseData.message);
     // this.navCtrl.navigateForward('/home');
   }
@@ -171,7 +169,20 @@ export class AddProductDetailPage implements OnInit {
   }
 
   async generateqr(id){
-    this.qrimages.imagePath = "http://localhost/api/product/qrcode.php?text="+id;
+    this.qrimages.imagePath = "http://ersaptaaristo.xyz/product/qrcode.php?text="+id;
   }
+
+
+  // download(imageURL) {
+  //   const fileTransfer: FileTransferObject = this.transfer.create();
+  //   let targetPath = cordova.file.externalRootDirectory + "download/" + moment().format("YYYYMMDDHHmmsss") + ".jpg";
+  //   fileTransfer.download(imageURL, targetPath, true).then((entry) => {
+  //     alert('download complete: ' + entry.toURL());
+  //   }, (error) => {
+  //     console.log("download error source " + error.source);
+  //     console.log("download error target " + error.target);
+  //     console.log("upload error code" + error.code);
+  //   });
+  // }
 
 }
