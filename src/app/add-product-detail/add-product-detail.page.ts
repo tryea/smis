@@ -8,6 +8,7 @@ import { ActionSheetController, ToastController, Platform, LoadingController } f
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { finalize } from 'rxjs/operators';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-add-product-detail',
@@ -43,12 +44,11 @@ export class AddProductDetailPage implements OnInit {
       this.responseData = err.error;
       alert(this.responseData.message);
     });
-
   }
 
   async startAddProductDetail() {
     await this.addProductDetail();
-    await this.startUpload(this.images, 'product');
+    //await this.startUpload(this.images, 'product');
     //await this.startUpload(this.qrimages, 'QR');
     // this.startUpload(this.qrimages);
     // alert(this.responseData.message);
@@ -58,10 +58,11 @@ export class AddProductDetailPage implements OnInit {
   async addProductDetail() {
     console.log(this.infoProductDetail);
     this.smisservice.postData('addproductdetail.php', this.infoProductDetail).subscribe(data => {
-
       this.responseData = data;
       console.log(this.responseData);
-      return this.responseData;
+      this.generateqr(this.responseData.productDetailId);
+      this.startUpload(this.images, 'product');
+
     }, (err: HttpErrorResponse) => {
       console.log(err.error);
       this.responseData = err.error;
@@ -167,6 +168,10 @@ export class AddProductDetailPage implements OnInit {
           console.log('File upload failed.')
         }
       });
+  }
+
+  async generateqr(id){
+    this.qrimages.imagePath = "http://localhost/api/product/qrcode.php?text="+id;
   }
 
 }
