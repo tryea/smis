@@ -15,6 +15,7 @@ import { File } from '@ionic-native/File/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { NgxQRCodeModule, NgxQRCodeComponent } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,9 +35,11 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     Camera,
     File,
     WebView,
+    FileTransfer,
     BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+ 

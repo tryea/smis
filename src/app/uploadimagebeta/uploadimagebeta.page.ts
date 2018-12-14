@@ -79,7 +79,7 @@ export class UploadimagebetaPage implements OnInit {
     });
   }
 
-  startUpload(img) {
+  startUpload() {
     this.file.resolveLocalFilesystemUrl(this.images.imagePath)
       .then(entry => {
         (<FileEntry>entry).file(file => this.readFile(file))

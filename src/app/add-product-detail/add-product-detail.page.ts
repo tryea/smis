@@ -8,6 +8,7 @@ import { ActionSheetController, ToastController, Platform, LoadingController } f
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { finalize } from 'rxjs/operators';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 
 declare var cordova: any;
 
@@ -30,7 +31,7 @@ export class AddProductDetailPage implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(private smisservice: SmisService, private navCtrl: NavController, private camera: Camera, private webview: WebView,
     private actionSheetController: ActionSheetController, private loadingController: LoadingController,
-    private ref: ChangeDetectorRef, private file: File, private barcodeScanner: BarcodeScanner) { }
+    private ref: ChangeDetectorRef, private file: File, private barcodeScanner: BarcodeScanner, private transfer: FileTransfer ) { }
 
   ngOnInit() {
     this.smisservice.getData('productlist.php').subscribe(data => {
@@ -126,7 +127,7 @@ export class AddProductDetailPage implements OnInit {
   async startUpload(img,imgtype) {
     this.file.resolveLocalFilesystemUrl(img.imagePath)
       .then(entry => {
-        var name = imgtype + "_" + this.responseData.productId + "_" + this.responseData.productDetailId + "_" + this.responseData.productDetailName ;
+        var name = imgtype + "_" + this.responseData.productId + "_" + this.responseData.productDetailId + "_" + this.responseData.productDetailName + ".jpg";
         (<FileEntry>entry).file(file => this.readFile(file,name))
       })
       .catch(err => {
@@ -172,7 +173,24 @@ export class AddProductDetailPage implements OnInit {
     this.qrimages.imagePath = "http://ersaptaaristo.xyz/product/qrcode.php?text="+id;
   }
 
-
+  async saveqr(){
+    let path = null;
+    let path2 = null;
+    let localstrg = null;
+    var name = "QR" + "_" + this.responseData.productId + "_" + this.responseData.productDetailId + "_" + this.responseData.productDetailName + ".jpg";
+    //path = this.file.externalApplicationStorageDirectory;
+    path = this.file.externalApplicationStorageDirectory;
+    localstrg = path.indexOf("Android");;
+    path2 = path.substr(0, localstrg - 1) + "/Download/";
+    console.log("path1: " + path);
+    console.log("path2: " + path2);
+    //path = "../.."
+    const transfer = this.transfer.create();
+    transfer.download(this.qrimages.imagePath, path2 + name).then(entry => {
+      let url = entry.toURL();
+      console.log(url);
+    });
+  }
   // download(imageURL) {
   //   const fileTransfer: FileTransferObject = this.transfer.create();
   //   let targetPath = cordova.file.externalRootDirectory + "download/" + moment().format("YYYYMMDDHHmmsss") + ".jpg";

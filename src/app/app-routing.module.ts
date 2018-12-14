@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'imageupload', loadChildren: './imageupload/imageupload.module#ImageuploadPageModule' },
   { path: 'qrcode', loadChildren: './qrcode/qrcode.module#QrcodePageModule' },
   { path: 'uploadimagebeta', loadChildren: './uploadimagebeta/uploadimagebeta.module#UploadimagebetaPageModule' },
+  { path: 'downloadimagebeta', loadChildren: './downloadimagebeta/downloadimagebeta.module#DownloadimagebetaPageModule' },
 ];
 
 @NgModule({

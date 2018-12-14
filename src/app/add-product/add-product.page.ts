@@ -19,7 +19,7 @@ export class AddProductPage implements OnInit {
   ngOnInit() {
     this.smisservice.getData('categorylist.php').subscribe(data => {
 
-      this.responseData = data;      
+      this.responseData = data;
       this.category = this.responseData;
       this.categoryList = this.category.records;
       console.log(this.categoryList);
