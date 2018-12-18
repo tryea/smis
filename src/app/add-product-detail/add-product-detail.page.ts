@@ -24,7 +24,7 @@ export class AddProductDetailPage implements OnInit {
   responseData: any;
   createqr: any;
   createdCode: any;
-  infoProductDetail = { 'productDetailName': '', 'productId': '', 'colour': '', 'size': '', 'stock': '' };
+  infoProductDetail = { 'productDetailName': '', 'productId': '', 'colour': '', 'size': '', 'stock': '', 'price': '' };
   // tslint:disable-next-line:max-line-length
   images = { 'imagePath': 'http://ersaptaaristo.xyz/img/add.png', 'currentName': '', 'correctPath': '', 'convertedImagePath': 'http://ersaptaaristo.xyz/img/add.png'};
   qrimages = { 'imagePath': '', 'currentName': '', 'correctPath': '', 'convertedImagePath': '' };

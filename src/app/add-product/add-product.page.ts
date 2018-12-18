@@ -10,9 +10,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AddProductPage implements OnInit {
   category: any;
-  categoryList : any;
+  categoryList: any;
   responseData: any;
-  infoProduct = {"productName":"", "categoryId":""};
+  infoProduct = {'productName': '', 'categoryId': ''};
 
   constructor(private smisservice: SmisService, private navCtrl: NavController) { }
 
@@ -23,7 +23,7 @@ export class AddProductPage implements OnInit {
       this.category = this.responseData;
       this.categoryList = this.category.records;
       console.log(this.categoryList);
-      
+
     }, (err: HttpErrorResponse) => {
       console.log(err.error);
       this.responseData = err.error;
@@ -32,7 +32,7 @@ export class AddProductPage implements OnInit {
 
   }
 
-  addProduct(){
+  addProduct() {
     console.log(this.infoProduct);
     this.smisservice.postData('addproduct.php', this.infoProduct).subscribe(data => {
 

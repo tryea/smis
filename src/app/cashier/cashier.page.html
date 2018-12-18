@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cashier</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-grid *ngIf="order.length > 0">
+      <ion-row>
+        <ion-col>
+          <label> Product Name</label>
+        </ion-col>
+        <ion-col>
+          <label> Quantity</label>
+        </ion-col>
+
+        <ion-col>
+          <label> price per pcs</label>
+        </ion-col>
+
+        <ion-col>
+          <label> Total Price </label>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let item of order; index as pos">
+        <ion-col>
+          <label> {{item.productDetailName}} </label>
+        </ion-col>
+        <ion-col>
+          <label> {{item.quantity}}</label>
+        </ion-col>
+
+        <ion-col>
+          <label> {{item.price}}</label>
+        </ion-col>
+
+        <ion-col>
+          <label> {{item.total}} </label>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-item>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-label>Quantity: </ion-label>
+    <ion-input required type="number" placeholder="Quantity" [(ngModel)]="quantity"></ion-input>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addProductOrder()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="generateRecipe()">
+      <ion-icon name="document"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>requestproductlist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <label> Product Name</label>
+        </ion-col>
+        <ion-col>
+          <label> From</label>
+        </ion-col>
+
+        <ion-col>
+          <label> To </label>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let item of requestList; index as pos">
+        <ion-col>
+          <label> {{item.productName}} </label>
+        </ion-col>
+        <ion-col>
+          <label> {{item.officeFrom}}</label>
+        </ion-col>
+
+        <ion-col>
+          <label> {{item.officeTo}}</label>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+
+</ion-content>

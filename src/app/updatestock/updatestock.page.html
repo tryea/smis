@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>updatestock</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-card *ngIf="scannedCode; else elseTemplate">
+    <ion-card-content>
+      <ion-img [src]="productDetailInfo[0].imagePath" ></ion-img>
+      <h2>Product Detail Id: {{productDetailInfo[0].productDetailId}}</h2>
+      <h2>Product Detail Name: {{productDetailInfo[0].productDetailName}}</h2>
+      <h2>Product Name: {{productDetailInfo[0].productName}}</h2>
+      <h2>Product Category: {{productDetailInfo[0].categoryName}}</h2>
+      <h2>Product Category: {{productDetailInfo[0].colour}}</h2>
+      <h2>Product Category: {{productDetailInfo[0].size}}</h2>
+      <h2>Current Stock: {{productDetailInfo[0].stock}}</h2>
+    </ion-card-content>
+    <ion-card-content>
+      <ion-item>
+        <ion-input required type="text" placeholder="input stock" [(ngModel)]="input.stock"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-button shape="round" size="full" color="primary" (click)="updateStock()">Update Stock</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-template #elseTemplate>
+    <button ion-button full icon-left (click)="scanCode()" color="secondary">
+      <ion-icon name="qr-scanner"></ion-icon>Scan Code
+    </button>
+  </ng-template>
+
+
+</ion-content>

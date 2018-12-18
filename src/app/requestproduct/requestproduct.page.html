@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>requestproduct</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-input required type="text" placeholder="Product Name" [(ngModel)]="infoRequest.productDetailName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Branch Name</ion-label>
+    <ion-select [(ngModel)]="infoRequest.officeTo" value="" ok-text="Okay" cancel-text="Dismiss">
+      <ion-select-option *ngFor="let branch of branchList" value="{{ branch.branchId }}">
+        {{branch.branchName}} </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button shape="round" size="full" color="primary" (click)="inputRequest()">Send Request</ion-button>
+
+</ion-content>

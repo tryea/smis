@@ -9,11 +9,15 @@ const routes: Routes = [
   { path: 'addCategory', loadChildren: './add-category/add-category.module#AddCategoryPageModule' },
   { path: 'addProduct', loadChildren: './add-product/add-product.module#AddProductPageModule' },
   { path: 'addProductDetail', loadChildren: './add-product-detail/add-product-detail.module#AddProductDetailPageModule' },
-  { path: 'updateStock', loadChildren: './update-stock/update-stock.module#UpdateStockPageModule' },
   { path: 'imageupload', loadChildren: './imageupload/imageupload.module#ImageuploadPageModule' },
   { path: 'qrcode', loadChildren: './qrcode/qrcode.module#QrcodePageModule' },
   { path: 'uploadimagebeta', loadChildren: './uploadimagebeta/uploadimagebeta.module#UploadimagebetaPageModule' },
   { path: 'downloadimagebeta', loadChildren: './downloadimagebeta/downloadimagebeta.module#DownloadimagebetaPageModule' },
+  { path: 'requestproduct', loadChildren: './requestproduct/requestproduct.module#RequestproductPageModule' },
+  { path: 'cashier', loadChildren: './cashier/cashier.module#CashierPageModule' },
+  { path: 'updatestock', loadChildren: './updatestock/updatestock.module#UpdatestockPageModule' },
+  { path: 'requestproductlist', loadChildren: './requestproductlist/requestproductlist.module#RequestproductlistPageModule' },
+
 ];
 
 @NgModule({
