@@ -180,7 +180,7 @@ export class AddProductDetailPage implements OnInit {
     var name = "QR" + "_" + this.responseData.productId + "_" + this.responseData.productDetailId + "_" + this.responseData.productDetailName + ".jpg";
     //path = this.file.externalApplicationStorageDirectory;
     path = this.file.externalApplicationStorageDirectory;
-    localstrg = path.indexOf("Android");;
+    localstrg = path.indexOf("Android");
     path2 = path.substr(0, localstrg - 1) + "/Download/";
     console.log("path1: " + path);
     console.log("path2: " + path2);

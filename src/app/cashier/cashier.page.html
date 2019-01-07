@@ -6,41 +6,44 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-grid *ngIf="order.length > 0">
-      <ion-row>
-        <ion-col>
-          <label> Product Name</label>
-        </ion-col>
-        <ion-col>
-          <label> Quantity</label>
-        </ion-col>
+    <div id="printable-area">
+      <div class="detail-table">
+        <table *ngIf="order.length > 0">
+          <tr>
+            <td>
+              <label> Product Name</label>
+            </td>
+            <td>
+              <label> Quantity</label>
+            </td>
 
-        <ion-col>
-          <label> price per pcs</label>
-        </ion-col>
+            <td>
+              <label> price per pcs</label>
+            </td>
 
-        <ion-col>
-          <label> Total Price </label>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngFor="let item of order; index as pos">
-        <ion-col>
-          <label> {{item.productDetailName}} </label>
-        </ion-col>
-        <ion-col>
-          <label> {{item.quantity}}</label>
-        </ion-col>
+            <td>
+              <label> Total Price </label>
+            </td>
+          </tr>
+          <tr *ngFor="let item of order; index as pos">
+            <td>
+              <label> {{item.productDetailName}} </label>
+            </td>
+            <td>
+              <label> {{item.quantity}}</label>
+            </td>
 
-        <ion-col>
-          <label> {{item.price}}</label>
-        </ion-col>
+            <td>
+              <label> {{item.price}}</label>
+            </td>
 
-        <ion-col>
-          <label> {{item.total}} </label>
-        </ion-col>
-      </ion-row>
-
-    </ion-grid>
+            <td>
+              <label> {{item.total}} </label>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </ion-item>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-label>Quantity: </ion-label>

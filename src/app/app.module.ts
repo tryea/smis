@@ -16,6 +16,9 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { NgxQRCodeModule, NgxQRCodeComponent } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +38,8 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
     Camera,
     File,
     WebView,
+    SocialSharing,
+    FileOpener,
     FileTransfer,
     BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

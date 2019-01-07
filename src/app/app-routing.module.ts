@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'cashier', loadChildren: './cashier/cashier.module#CashierPageModule' },
   { path: 'updatestock', loadChildren: './updatestock/updatestock.module#UpdatestockPageModule' },
   { path: 'requestproductlist', loadChildren: './requestproductlist/requestproductlist.module#RequestproductlistPageModule' },
+  { path: 'pdfmakerbeta', loadChildren: './pdfmakerbeta/pdfmakerbeta.module#PdfmakerbetaPageModule' },
 
 ];
 
