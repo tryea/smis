@@ -21,8 +21,8 @@ export class RequestproductlistPage implements OnInit {
   getRequestList() {
     localStorage.getItem('loginInfo');
     var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
-    console.log(loginInfo.officeId);
-    var id = loginInfo.officeId;
+    console.log(loginInfo.branchId);
+    var id = loginInfo.branchId;
     var path = "requestlist.php?id=" + id;
     this.smisservice.getData(path).subscribe(data => {
 

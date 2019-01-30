@@ -6,50 +6,41 @@
 
 <ion-content padding>
 
-    <ion-item>
-      <ion-input required type="text" placeholder="Product Detail Name" [(ngModel)]="infoProductDetail.productDetailName"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-input required type="text" placeholder="Product Detail Name" [(ngModel)]="infoProductDetail.productDetailName"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label>Product Name</ion-label>
-      <ion-select [(ngModel)]="infoProductDetail.productId" value="" ok-text="Okay" cancel-text="Dismiss">
-        <ion-select-option *ngFor="let products of productList" value="{{ products.productId }}"> {{ products.productName
-          }} </ion-select-option>
-      </ion-select>
-    </ion-item>
+  <ion-item>
+    <ion-label>Product Name</ion-label>
+    <ion-select [(ngModel)]="infoProductDetail.productId" value="" ok-text="Okay" cancel-text="Dismiss">
+      <ion-select-option *ngFor="let products of productList" value="{{ products.productId }}"> {{ products.productName
+        }} </ion-select-option>
+    </ion-select>
+  </ion-item>
 
-    <ion-item>
-      <ion-input required type="text" placeholder="Colour" [(ngModel)]="infoProductDetail.colour"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-input required type="text" placeholder="Colour" [(ngModel)]="infoProductDetail.colour"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-input required type="text" placeholder="Size" [(ngModel)]="infoProductDetail.size"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-input required type="text" placeholder="Size" [(ngModel)]="infoProductDetail.size"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-input required type="text" placeholder="Stock" [(ngModel)]="infoProductDetail.stock"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input required type="text" placeholder="Price" [(ngModel)]="infoProductDetail.price"></ion-input>
-    </ion-item>
   <ion-item>
     <ion-list>
-      <ion-item>
         <ion-title>Product Image</ion-title>
-      </ion-item>
-      <ion-item>
+        
         <ion-img width="80" height="80" [src]=images.convertedImagePath alt="choose Image" (click)="selectImage()">
         </ion-img>
-      </ion-item>
     </ion-list>
   </ion-item>
 
 
-  <ion-item>
+  <ion-item *ngIf="qrimages.imagePath">
     <ion-img [src]="qrimages.imagePath"></ion-img>
   </ion-item>
 
-  <ion-button shape="round" size="full" color="primary" (click)="saveqr()">Save Code QR</ion-button>
+  <ion-button shape="round" size="full" color="primary" (click)="saveqr()" *ngIf="qrimages.imagePath">Save Code QR</ion-button>
   <ion-button shape="round" size="full" color="primary" (click)="startAddProductDetail()">Add Product</ion-button>
 
 </ion-content>

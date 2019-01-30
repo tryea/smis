@@ -9,7 +9,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./requestproduct.page.scss'],
 })
 export class RequestproductPage implements OnInit {
-  infoRequest = { "productDetailName": "", "officeFrom": "", "officeTo": "" };
+  infoRequest = { "productDetailName": "", "branchFrom": "", "branchTo": "" };
   responseData: any;
   branch: any;
   branchList: any;
@@ -36,10 +36,11 @@ export class RequestproductPage implements OnInit {
 
   inputRequest() {
     console.log(this.infoRequest);
-    localStorage.getItem('loginInfo');
+    // tslint:disable-next-line:prefer-const
     var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
-    console.log(loginInfo.officeId);
-    this.infoRequest.officeFrom = loginInfo.officeId;
+    // tslint:disable-next-line:prefer-const
+    var branchId = loginInfo.branchId;
+    this.infoRequest.branchFrom = branchId;
     
     this.smisservice.postData('sendrequest.php', this.infoRequest).subscribe(data => {
 

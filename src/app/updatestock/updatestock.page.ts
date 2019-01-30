@@ -14,13 +14,13 @@ export class UpdatestockPage implements OnInit {
   responseData: any;
   productDetailInfo: any;
   // tslint:disable-next-line:quotemark
-  input = { "stock": "", "productDetailId" : "" };
+  input = { "stock": "", "productDetailId": "", "branchId": "", "storageNumber" : "", "price" : ""};
   constructor(private barcodeScanner: BarcodeScanner, private smisservice: SmisService, private navCtrl: NavController ) { }
 
   ngOnInit() {
     this.scanCode();
-    // this.scannedCode = '32';
-     // this.getProductInfo(32);
+    // this.scannedCode = '1';
+    //  this.getProductInfo(1);
   }
 
   scanCode() {
@@ -34,15 +34,15 @@ export class UpdatestockPage implements OnInit {
   }
 
   getProductInfo(productId) {
-    const path = 'getproductinfo.php?id=' + productId;
+    var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
+    var branchId = loginInfo.branchId;
+    const path = 'getproductinfo.php?id=' + productId + "&branch=" + branchId;
     console.log(path);
     this.smisservice.getData(path).subscribe(data => {
 
       this.responseData = data;
       console.log(this.responseData);
-      this.productDetailInfo = this.responseData.records;
-      console.log(this.productDetailInfo);
-      console.log(this.productDetailInfo[0].size);
+      this.productDetailInfo = this.responseData;
 
     }, (err: HttpErrorResponse) => {
       console.log(err.error);
@@ -53,7 +53,11 @@ export class UpdatestockPage implements OnInit {
   }
 
   updateStock() {
-    this.input.productDetailId = this.productDetailInfo[0].productDetailId;
+    this.input.productDetailId = this.productDetailInfo.productDetailId;
+    var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
+    var branchId = loginInfo.branchId;
+
+    this.input.branchId = branchId;
     this.smisservice.postData('updatestock.php', this.input).subscribe(data => {
 
       this.responseData = data;

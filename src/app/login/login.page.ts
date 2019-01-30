@@ -25,15 +25,9 @@ export class LoginPage implements OnInit {
       this.smisservice.postData('login.php', this.infoLogin).subscribe(data => {
 
         this.responseData = data;
-        console.log(this.responseData.status);
-        this.statusLogin = this.responseData.message;
-        console.log(this.statusLogin);
-        console.log(this.responseData);
-        if (this.statusLogin == "Login Success") {
-          this.responseData = JSON.stringify(this.responseData);
-          localStorage.setItem("loginInfo", this.responseData);
-          this.navCtrl.navigateForward('/home');
-        }
+        this.responseData = JSON.stringify(this.responseData);
+        localStorage.setItem("loginInfo", this.responseData);
+        this.navCtrl.navigateForward('/home');
       }, (err: HttpErrorResponse) => {
         console.log(err.error);
         this.responseData = err.error;

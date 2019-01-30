@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Register Staff</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,13 +10,15 @@
     <ion-input required type="text" placeholder="Username" [(ngModel)]="infoRegister.username"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input required type="text" placeholder="Role" [(ngModel)]="infoRegister.role"></ion-input>
+    <ion-label>Role</ion-label>
+    <ion-select [(ngModel)]="infoRegister.role" value="" ok-text="Okay" cancel-text="Dismiss">
+      <ion-select-option *ngFor="let role of roleList" value="{{ role.roleId }}">
+        {{role.roleName}} </ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item>
     <ion-input required type="password" placeholder="Password" [(ngModel)]="infoRegister.password"></ion-input>
   </ion-item>
-
-  <ion-button shape="round" size="full" color="primary" href="login">Login</ion-button>
   <ion-button shape="round" size="full" color="primary" (click)="register()">Register</ion-button>
 
 </ion-content>

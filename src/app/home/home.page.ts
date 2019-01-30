@@ -8,7 +8,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  loginInfo:{"username":"","role":""};
+  loginInfo:{"username":"","role":"","branch":""};
 
   constructor(private smisservice: SmisService, private navCtrl: NavController){}
 
@@ -18,7 +18,7 @@ export class HomePage {
         this.loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
       }
       else{
-        this.loginInfo = { "username": "", "role": "" };
+        this.loginInfo = { "username": "", "role": "" , "branch":""};
         this.navCtrl.navigateBack('/login');
       }
       
